@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import './index.css';
 
 const theme = createTheme({
   components: {
@@ -10,6 +11,13 @@ const theme = createTheme({
         tooltip: {
           backgroundColor: '#000000',
         },
+      },
+    },
+  },
+  MuiSelect: {
+    styleOverrides: {
+      paper: {
+        backgroundColor: '#ffffff',
       },
     },
   },

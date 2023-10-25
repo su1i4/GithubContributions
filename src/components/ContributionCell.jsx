@@ -11,6 +11,10 @@ function CustomTooltipContent({ date, count }) {
 }
 
 function ContributionCell({ date, count }) {
+  if (date === null) {
+    return <Cell count={count} date={date} />;
+  }
+
   const formatDate = new Date(date).toLocaleDateString('ru-RU', {
     weekday: 'long',
     year: 'numeric',
@@ -24,7 +28,7 @@ function ContributionCell({ date, count }) {
       arrow
       title={<CustomTooltipContent date={formatDate} count={count} />}
     >
-      <Cell count={count} />
+      <Cell count={count} date={date} />
     </Tooltip>
   );
 }
@@ -42,6 +46,12 @@ const Cell = styled('div')`
     if (count >= 10 && count <= 19) return '#7ea8c9';
     if (count >= 20 && count <= 29) return '#527ba0';
     if (count >= 30) return '#254e77';
+  }};
+  background-color: ${({ date }) => {
+    if (date === null) return '#ffffff';
+  }};
+  cursor: ${({ date }) => {
+    if (date === null) return 'default';
   }};
 `;
 
