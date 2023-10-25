@@ -1,7 +1,32 @@
+import Tooltip from '@mui/material/Tooltip';
 import { styled } from '@mui/material';
 
+function CustomTooltipContent({ date, count }) {
+  return (
+    <ContainerContentTooltip>
+      <span>{`${count || 0} contributions`}</span>
+      <span>{date}</span>
+    </ContainerContentTooltip>
+  );
+}
+
 function ContributionCell({ date, count }) {
-  return <Cell count={count} />;
+  const formatDate = new Date(date).toLocaleDateString('ru-RU', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+
+  return (
+    <Tooltip
+      placement="top"
+      arrow
+      title={<CustomTooltipContent date={formatDate} count={count} />}
+    >
+      <Cell count={count} />
+    </Tooltip>
+  );
 }
 
 export default ContributionCell;
@@ -19,3 +44,5 @@ const Cell = styled('div')`
     if (count >= 30) return '#254e77';
   }};
 `;
+
+const ContainerContentTooltip = styled('div')``;
