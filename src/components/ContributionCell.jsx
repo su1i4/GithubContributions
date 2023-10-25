@@ -4,8 +4,8 @@ import { styled } from '@mui/material';
 function CustomTooltipContent({ date, count }) {
   return (
     <ContainerContentTooltip>
-      <span>{`${count || 0} contributions`}</span>
-      <span>{date}</span>
+      <span className="counts">{`${count || 0} contributions`}</span>
+      <span className="date">{date}</span>
     </ContainerContentTooltip>
   );
 }
@@ -45,4 +45,18 @@ const Cell = styled('div')`
   }};
 `;
 
-const ContainerContentTooltip = styled('div')``;
+const ContainerContentTooltip = styled('div')`
+  display: flex;
+  padding: 5px 8px;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  .counts {
+    color: #ffffff;
+    font-size: 1rem;
+  }
+  .date {
+    color: #7c7c7c;
+    font-size: 0.8rem;
+  }
+`;
